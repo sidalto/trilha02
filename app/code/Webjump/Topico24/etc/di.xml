@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Webjump Develop Team <dev@webjump.com.br>
+ * @copyright   2022 Webjump (http://www.webjump.com.br)
+ * @license     http://www.webjump.com.br Copyright
+ * @link        http://www.webjump.com.br
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\Action\Action">
+        <plugin name="Webjump_Topico24_Plugin_Magento_Before_Action_Dispatch" type="Webjump\Topico24\Plugin\Magento\Framework\Action\Action\BeforeDispatchPlugin" sortOrder="1" disabled="false" />
+        <plugin name="Webjump_Topico24_Plugin_Magento_Around_Action_Dispatch" type="Webjump\Topico24\Plugin\Magento\Framework\Action\Action\AroundDispatchPlugin" sortOrder="1" disabled="false" />
+        <plugin name="Webjump_Topico24_Plugin_Magento_After_Action_Dispatch" type="Webjump\Topico24\Plugin\Magento\Framework\Action\Action\AfterDispatchPlugin" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Webjump\Topico24\Logger\CriticalLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">action-plugin-logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Webjump\Topico24\Logger\Handler\CriticalHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webjump\Topico24\Logger\Handler\CriticalHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Webjump\Topico24\Logger\DebugLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">action-plugin-logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Webjump\Topico24\Logger\Handler\DebugHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webjump\Topico24\Logger\Handler\DebugHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="command_my_command" xsi:type="object">Webjump\Topico24\Console\Command\MyCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
