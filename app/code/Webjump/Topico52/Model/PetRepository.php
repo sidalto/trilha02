@@ -22,11 +22,6 @@ use Webjump\Topico52\Model\ResourceModel\Pet\CollectionFactory;
 class PetRepository implements PetRepositoryInterface
 {
     /**
-     * @var PetInterface
-     */
-    private PetInterface $petInterface;
-
-    /**
      * @var PetInterfaceFactory
      */
     private PetInterfaceFactory $petInterfaceFactory;
@@ -42,18 +37,15 @@ class PetRepository implements PetRepositoryInterface
     private CollectionFactory $collectionFactory;
 
     /**
-     * @param PetInterface $petInterface
      * @param PetInterfaceFactory $petInterfaceFactory
      * @param PetResourceModel $petResourceModel
      * @param CollectionFactory $collectionFactory
      */
     public function __construct(
-        PetInterface $petInterface,
         PetInterfaceFactory $petInterfaceFactory,
         PetResourceModel $petResourceModel,
         CollectionFactory $collectionFactory
     ) {
-        $this->petInterface = $petInterface;
         $this->petInterfaceFactory = $petInterfaceFactory;
         $this->petResourceModel = $petResourceModel;
         $this->collectionFactory = $collectionFactory;
@@ -103,9 +95,9 @@ class PetRepository implements PetRepositoryInterface
      */
     public function getList(): array
     {
-        $collectionFactory = $this->collectionFactory->create();
+        $collection = $this->collectionFactory->create();
 
-        return $collectionFactory->getItems();
+        return $collection->getItems();
     }
 }
 

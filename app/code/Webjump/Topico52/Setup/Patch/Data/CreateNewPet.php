@@ -78,7 +78,7 @@ class CreateNewPet implements DataPatchInterface
         $pet2 = $this->petFactory->create();
 
         $pet2->setOwnerId(1);
-        $pet2->setOwnerTelephone('(11) 22222-3333');
+        $pet2->setOwnerTelephone('(11) 11111-2222');
         $pet2->setPetName('Bob');
         $pet2->setPetOwner('Webjump');
         $this->petRepositoryInterface->save($pet2);
