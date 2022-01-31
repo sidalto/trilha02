@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Webjump Develop Team <dev@webjump.com.br>
+ * @copyright   2022 Webjump (http://www.webjump.com.br)
+ * @license     http://www.webjump.com.br Copyright
+ * @link        http://www.webjump.com.br
+ */
+-->
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="pet_table" resource="default" engine="innodb" comment="Pet Table">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="true" nullable="false"  identity="true" comment="Pet Id" />
+        <column xsi:type="varchar" name="pet_name" nullable="false" length="255" comment="Pet name" />
+        <column xsi:type="varchar" name="pet_owner" nullable="false" length="255" comment="Pet owner name"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="created_at" />
+        <column xsi:type="varchar" name="owner_telephone" nullable="true" length="255" comment="Owner telephone" />
+        <column xsi:type="int" name="owner_id" padding="11" unsigned="true" nullable="false" comment="Foreign key customer entity" />
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="pet_table_entity_id_customer_entity_id"
+                    table="pet_table" column="owner_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+
+        <index referenceId="webjump_topico52_index_pet_entity_id" indexType="btree">
+            <column name="entity_id" />
+        </index>
+        <index referenceId="webjump_topico52_index_pet_name" indexType="btree">
+            <column name="pet_name" />
+        </index>
+        <index referenceId="webjump_topico52_index_pet_owner" indexType="btree">
+            <column name="pet_owner" />
+        </index>
+        <index referenceId="webjump_topico52_index_pet_created_at" indexType="btree">
+            <column name="created_at" />
+        </index>
+        <index referenceId="webjump_topico52_index_pet_owner_telephone" indexType="btree">
+            <column name="owner_telephone" />
+        </index>
+        <index referenceId="webjump_topico52_index_pet_owner_id" indexType="btree">
+            <column name="owner_id" />
+        </index>
+    </table>
+</schema>
